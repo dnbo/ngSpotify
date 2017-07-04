@@ -13,6 +13,9 @@ import { AuthenticateComponent } from './components/authenticate/authenticate.co
 import { ArtistComponent } from './components/artist/artist.component';
 import { AlbumComponent } from './components/album/album.component';
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
+import { Config } from './Config';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { RecommendationsComponent } from './components/recommendations/recommend
     AuthenticateComponent,
     ArtistComponent,
     AlbumComponent,
-    RecommendationsComponent
+    RecommendationsComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,7 @@ import { RecommendationsComponent } from './components/recommendations/recommend
     HttpModule,
     Ng2Webstorage
   ],
-  providers: [],
+  providers: [Config],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
