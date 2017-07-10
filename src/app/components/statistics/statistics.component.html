@@ -1,3 +1,25 @@
-<p>
-  statistics works!
-</p>
+<h2>User statistics</h2>
+<div class="row">
+  <div class="col-md-6">
+    <h3>Top tracks played for user</h3>
+    <div *ngFor="let track of topTracks; let songIndex = index" class="song amplitude-song-container">
+      <div class="well">
+        <span class="amplitude-volume-up"></span>
+        <div>
+          <h5>{{ songIndex + 1 }}. <span *ngFor="let artist of track.artists; let artistIndex = index">{{artist.name}}<span *ngIf="track.artists.length > 1 && artistIndex < track.artists.length-1">,</span>            </span> - {{ track.name }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h3>Top artists played for user</h3>
+    <!--<div *ngFor="let track of topTracks; let songIndex = index" class="song amplitude-song-container">
+      <div class="well">
+        <span class="amplitude-volume-up"></span>
+        <div>
+          <h5>{{ songIndex + 1 }}. <span *ngFor="let artist of track.artists; let artistIndex = index">{{artist.name}}<span *ngIf="track.artists.length > 1 && artistIndex < track.artists.length-1">,</span>            </span> - {{ track.name }}</h5>
+        </div>
+      </div>
+    </div>-->
+  </div>
+</div>

@@ -8,6 +8,8 @@ import { SessionStorageService } from 'ngx-webstorage';
 export class SpotifyService {
   private searchUrl: string;
   private artistUrl: string;
+  private topTracksUrl: string;
+  private topArtistsUrl: string;
   private albumsUrl: string;
   private albumUrl: string;
   private authToken: any;
@@ -63,10 +65,26 @@ export class SpotifyService {
     const headers = new Headers();
     headers.append('Authorization', 'Bearer ' + this.authToken.token);
 
-    const options = new RequestOptions({ headers: headers });
+    const options = this.getAuthHeader();
 
     return this.http.get(this.albumUrl, options)
       .map(res => res.json());
+  }
+
+  getTopTracks() {
+    this.topTracksUrl = `https://api.spotify.com/v1/me/top/tracks?time_range=long_term`;
+    const options = this.getAuthHeader();
+    return this.http.get(this.topTracksUrl, options)
+      .map(res => res.json());
+  }
+
+  private getAuthHeader() {
+    this.authToken = this.sessionStorageService.retrieve('authToken');
+
+    const headers = new Headers();
+    headers.append('Authorization', 'Bearer ' + this.authToken.token);
+
+    return new RequestOptions({ headers: headers });
   }
 }
 
